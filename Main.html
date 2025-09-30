@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Silver II — prezentacja</title>
+	<style>
+		:root{
+			--bg:#0f0f10;
+			--card:#0b0b0c;
+			--accent:#bfc3c6;
+			--glass: rgba(255,255,255,0.03);
+			--nav-height:72px;
+		}
+		html,body{height:100%;}
+		body{
+			margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+			background:linear-gradient(180deg,#0b0b0c 0%, #0f1112 60%);
+			color:var(--accent);
+			-webkit-font-smoothing:antialiased;
+			scroll-behavior:smooth;
+		}
+
+		/* TOP NAV */
+		.topnav{
+			position:sticky;top:14px;z-index:60;display:flex;justify-content:center;padding:8px 16px;
+			pointer-events:auto;
+		}
+		.nav{
+			display:flex;gap:8px;background:var(--glass);padding:8px 12px;border-radius:999px;align-items:center;
+			box-shadow:0 6px 20px rgba(0,0,0,0.45);
+			backdrop-filter: blur(6px);
+		}
+		.nav a{
+			color:var(--accent);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:600;font-size:14px;
+			opacity:.95;transition:background .24s ease,color .24s ease,transform .18s ease;
+		}
+		.nav a:hover{transform:translateY(-2px)}
+		.nav a.active{background:rgba(255,255,255,0.06);color:#fff;box-shadow:inset 0 -2px 0 rgba(255,255,255,0.02)}
+
+		/* HERO */
+		.hero{
+			min-height:calc(100vh - var(--nav-height));display:flex;align-items:center;justify-content:center;flex-direction:column;
+			gap:24px;padding:48px 24px 32px;text-align:center;
+		}
+		.logo{width:280px;max-width:60vmin;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.6));transition:transform .9s cubic-bezier(.2,.9,.2,1),opacity .6s ease}
+		.hero p{opacity:.85;margin:0;color:#cfd3d6}
+
+		.scroll-hint{margin-top:12px;color:#9aa0a3;font-size:14px;display:flex;gap:10px;align-items:center;opacity:.9}
+		.chev{width:28px;height:28px;border-left:3px solid #9aa0a3;border-bottom:3px solid #9aa0a3;transform:rotate(-45deg);opacity:.9}
+
+		/* PHONE SECTION */
+		#phone-section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 24px}
+		.card{width:100%;max-width:920px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:18px;padding:48px;box-shadow:0 10px 40px rgba(0,0,0,0.6);display:flex;gap:32px;align-items:center;backdrop-filter: blur(6px);-webkit-backdrop-filter: blur(6px);transform:translateY(20px);opacity:0;transition:all .9s cubic-bezier(.2,.9,.2,1)}
+		.card.visible{transform:none;opacity:1}
+
+		.phone-wrap{flex:1;display:flex;align-items:center;justify-content:center}
+		.phone{width:300px;max-width:38vmin;transition:transform .9s cubic-bezier(.2,.9,.2,1),opacity .9s ease;transform:translateX(80px) rotate(6deg) scale(.96);opacity:0;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.6))}
+		.phone.visible{transform:translateX(0) rotate(0deg) scale(1);opacity:1}
+
+		.specs{flex:1;color:#dfe3e6}
+		.specs h2{margin:0 0 12px 0;font-size:22px;color:#fff}
+		.specs p{margin:0;font-size:16px;line-height:1.5;color:#cfd3d6}
+
+		/* content sections */
+		.content-section{max-width:1000px;margin:48px auto;padding:40px 24px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border-radius:14px}
+		.content-section h3{margin-top:0;color:#fff}
+		.order-form{display:flex;flex-direction:column;gap:10px;max-width:560px}
+		.order-form input,.order-form textarea{padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--accent)}
+		.order-form button{padding:10px 14px;border-radius:10px;border:none;background:#1f6feb;color:#fff;font-weight:700;cursor:pointer}
+
+		/* small screens */
+		@media (max-width:880px){.card{flex-direction:column;text-align:center}.specs{order:3}}
+
+		/* reduced motion */
+		@media (prefers-reduced-motion:reduce){.logo,.phone,.card{transition:none;transform:none;opacity:1}}
+
+	</style>
+</head>
+<body>
+
+	<header class="topnav" role="navigation" aria-label="Główna nawigacja">
+		<nav class="nav" id="mainNav">
+			<a href="#about" class="nav-link">O nas</a>
+			<a href="#history" class="nav-link">Nasza historia</a>
+			<a href="#phone-section" class="nav-link">Telefon</a>
+			<a href="#order" class="nav-link">Zamówienie</a>
+		</nav>
+	</header>
+
+	<main>
+		<section class="hero" role="banner" id="hero">
+			<img src="ChatGPT_Image_30_wrz_2025__22_12_54-removebg-preview.png" alt="Silver II logo" class="logo" id="heroLogo">
+			<p>Zobacz najnowszy projekt Silver II — przewiń w dół, aby zobaczyć telefon i specyfikację</p>
+			<div class="scroll-hint" aria-hidden="true">
+				<div class="chev"></div>
+				<div>Przewiń</div>
+			</div>
+		</section>
+
+		<section id="about" class="content-section" aria-labelledby="about-title">
+			<h3 id="about-title">O nas</h3>
+			<p>Silver II to koncept sprzętowy skupiony na najwyższej jakości wykonania, innowacyjnym designie i fotograficznych możliwościach. Tworzymy urządzenia kierując się pasją do technologii i estetyki.</p>
+		</section>
+
+		<section id="history" class="content-section" aria-labelledby="history-title">
+			<h3 id="history-title">Nasza historia</h3>
+			<p>Firma powstała z potrzeby tworzenia sprzętu, który łączy elegancję z wydajnością. Od pierwszego prototypu skupialiśmy się na detalach — projektowaniu obudowy, optymalizacji aparatów i integracji mocnych komponentów.</p>
+		</section>
+
+		<section id="phone-section" aria-labelledby="phone-title">
+			<div class="card" id="card">
+				<div class="phone-wrap">
+					  <img src="image-removebg-preview.png" alt="Silver II - telefon" class="phone" id="phoneImg" loading="lazy">
+				</div>
+				<div class="specs">
+					<h2 id="phone-title">Silver II — potężna specyfikacja</h2>
+					<p>Telefon z aparatem 1024MPX z procesorem <strong>Snapdragon 8 Gen 2</strong>, do tego <strong>1024GB pamięci</strong> i <strong>18GB RAM</strong>.</p>
+					<p style="margin-top:12px;color:#9aa0a3;font-size:13px;">Animacja uruchamia się po przewinięciu sekcji w widok. Działa na nowoczesnych przeglądarkach z IntersectionObserver.</p>
+				</div>
+			</div>
+		</section>
+
+		<section id="order" class="content-section" aria-labelledby="order-title">
+			<h3 id="order-title">Zamówienie</h3>
+			<p>Jeśli chcesz zamówić lub dowiedzieć się więcej, zostaw swoje dane — oddzwonimy lub odpiszemy.</p>
+			<form class="order-form" onsubmit="event.preventDefault(); alert('Dziękujemy! Twoje zapytanie zostało wysłane.');">
+				<input type="text" name="name" placeholder="Imię i nazwisko" required>
+				<input type="email" name="email" placeholder="E-mail" required>
+				<textarea name="message" rows="5" placeholder="Wiadomość / szczegóły zamówienia"></textarea>
+				<button type="submit">Wyślij zapytanie</button>
+			</form>
+		</section>
+
+	</main>
+
+	<script>
+		// Scroll-triggered animation (phone) + nav active highlighting
+		(function(){
+			const card = document.getElementById('card');
+			const phone = document.getElementById('phoneImg');
+			const logo = document.getElementById('heroLogo');
+
+			// Phone animation observer
+			if ('IntersectionObserver' in window) {
+				const obs = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							card.classList.add('visible');
+							phone.classList.add('visible');
+							logo.style.transform = 'scale(.85) translateY(-10px)';
+							logo.style.opacity = '0.85';
+						}
+					});
+				}, {threshold: 0.35});
+				if (card) obs.observe(card);
+			} else {
+				// fallback
+				if (card) card.classList.add('visible');
+				if (phone) phone.classList.add('visible');
+			}
+
+			// NAV: highlight active link based on sections in view
+			const navLinks = Array.from(document.querySelectorAll('.nav .nav-link'));
+			const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+			if ('IntersectionObserver' in window && sections.length) {
+				const navObserver = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						const id = entry.target.id;
+						const link = document.querySelector('.nav a[href="#'+id+'"]');
+						if (entry.isIntersecting) {
+							navLinks.forEach(l => l.classList.remove('active'));
+							if (link) link.classList.add('active');
+						}
+					});
+				}, {threshold: 0.45});
+
+				sections.forEach(s => navObserver.observe(s));
+			}
+
+			// Smooth scroll on nav clicks (explicit, for accessibility)
+			document.querySelectorAll('.nav a').forEach(a => {
+				a.addEventListener('click', function(e){
+					const target = document.querySelector(this.getAttribute('href'));
+					if (target) {
+						e.preventDefault();
+						target.scrollIntoView({behavior:'smooth', block:'start'});
+						// set active immediately
+						document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
+						this.classList.add('active');
+					}
+				});
+			});
+
+		})();
+	</script>
+
+</body>
+</html>
